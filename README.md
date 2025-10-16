@@ -79,7 +79,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1595" height="879" alt="Screenshot 2025-10-16 at 7 41 42 AM" src="https://github.com/user-attachments/assets/99642ce2-4e55-4dcc-90b5-284878c32c97" />
+<img width="1630" height="882" alt="Screenshot 2025-10-16 at 9 17 01 AM" src="https://github.com/user-attachments/assets/43589346-7c44-414c-975e-80f67576db39" />
 
 <img width="1616" height="361" alt="Screenshot 2025-10-16 at 8 01 42 AM" src="https://github.com/user-attachments/assets/243aa64c-713e-4976-8466-0f95c5f53a4a" />
 
