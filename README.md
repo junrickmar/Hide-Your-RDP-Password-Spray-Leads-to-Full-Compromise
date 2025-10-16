@@ -42,7 +42,7 @@ DeviceLogonEvents
 <img width="961" height="562" alt="Screenshot 2025-10-15 at 12 59 53 PM" src="https://github.com/user-attachments/assets/87036d43-e7b9-4cba-b839-f3671643de02" />
 
 ##Attack Details
-The attacker conducted an RDP brute-force attack against host `flare` from external IP 159.26.106.84. Telemetry shows:
+The attacker conducted a RDP brute-force attack against host `flare` from external IP 159.26.106.84. 
 
 - 10 failed login attempts** targeting multiple accounts (slflare, admin)
 - 5 successful logins** for account `slflare`
@@ -62,6 +62,27 @@ DeviceLogonEvents
 | order by Failures desc
 ```
 <img width="1004" height="340" alt="Screenshot 2025-10-15 at 12 42 49 PM" src="https://github.com/user-attachments/assets/9a53ef25-06f2-4d16-9070-e5a6264a145f" />
+
+## Execution
+
+### PowerShell and CMD execution for discovery commands & Suspicious script execution
+After attacker successfully authenticate. Immediately run reconnaissance command at 2025-09-16T19:38:40.063299Z and suspicious scripts commands.
+
+**Query used to locate events:**
+
+```kql
+DeviceProcessEvents
+| where AccountName == "slflare"
+| where Timestamp between (datetime(2025-09-14) .. datetime(2025-09-18))
+| where InitiatingProcessAccountName != "system"
+| project Timestamp, AccountName, InitiatingProcessAccountName, FileName, ProcessCommandLine
+| order by Timestamp asc
+```
+
+<img width="1595" height="879" alt="Screenshot 2025-10-16 at 7 41 42 AM" src="https://github.com/user-attachments/assets/99642ce2-4e55-4dcc-90b5-284878c32c97" />
+
+<img width="1616" height="361" alt="Screenshot 2025-10-16 at 8 01 42 AM" src="https://github.com/user-attachments/assets/243aa64c-713e-4976-8466-0f95c5f53a4a" />
+
 
 
 
