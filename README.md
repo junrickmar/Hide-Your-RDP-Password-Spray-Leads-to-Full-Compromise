@@ -80,8 +80,20 @@ DeviceProcessEvents
 ```
 
 <img width="1630" height="882" alt="Screenshot 2025-10-16 at 9 17 01 AM" src="https://github.com/user-attachments/assets/43589346-7c44-414c-975e-80f67576db39" />
+The attacker used this command line to launch the binary  - msupdate.exe" -ExecutionPolicy Bypass -File C:\Users\Public\update_check.ps1
+
+- Attacker choses C:\ProgramData\Microsoft\Windows\Update** to blend in with legitimate Microsoft processes.
+- Mixed user-writable locations (`C:\Users\Public\`) with system folders.
+- Used temp directories for data staging before exfiltration
 
 <img width="1616" height="361" alt="Screenshot 2025-10-16 at 8 01 42 AM" src="https://github.com/user-attachments/assets/243aa64c-713e-4976-8466-0f95c5f53a4a" />
+
+## Persistence
+The Threat Actor is trying to maintain their foothold.
+
+The attacker established persistence on the system to maintain access. In this case, they created a scheduled task to ensure their payload would execute even after reboot or logoff.
+
+
 
 
 
