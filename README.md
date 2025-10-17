@@ -93,8 +93,29 @@ The Threat Actor is trying to maintain their foothold.
 
 The attacker established persistence on the system to maintain access. In this case, they created a scheduled task to ensure their payload would execute even after reboot or logoff.
 
+### Mechanisms Deployed
 
+1. Fake Windows Service — **MSUpdateService**
+A fake Windows service named MSUpdateService was identified, configured under the registry path
+**HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\MSUpdateService.**
+This service points to the binary path **C:\ProgramData\Microsoft\Windows\Update\mscloudsync.ps1**, which is executed on system boot.
+The service is masquerading as a legitimate Microsoft Update service to avoid detection and maintain persistence.
 
+2. Registry Run Key — **MSCloudSync**
+A malicious registry run key named MSCloudSync was found under
+**HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run.**
+Its value data launches a PowerShell script (mscloudsync.ps1) to execute the payload each time a user logs in.
+This entry imitates a Microsoft cloud synchronization service, serving as an additional persistence mechanism.
+
+3. Scheduled Task — **MicrosoftUpdateSync**
+A scheduled task titled MicrosoftUpdateSync was created and registered in
+**TaskCache\Tree\MicrosoftUpdateSync** on 2025-09-16 19:39:45.
+This task provides an extra trigger for payload execution and is disguised as a Windows Update scheduling process to blend in with legitimate system operations.
+
+![image copy](https://github.com/user-attachments/assets/b4de6d67-235f-4d0c-b537-956f469c5f11)
+
+✅ Summary:
+The attacker implemented three persistence mechanisms — a fake service, a registry run key, and a scheduled task — all designed to masquerade as legitimate Microsoft update or synchronization components, ensuring payload execution on system startup or user login while maintaining stealth and persistence.
 
 
 
